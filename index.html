@@ -1,234 +1,256 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daniel Medina González · DaniielMG01</title>
-  <meta name="description" content="Daniel Medina González: graduado en Ciencia e Ingeniería de Datos, estudiante del máster SIANI, streamer y creador de proyectos propios.">
+  <title>Daniel Medina González · Portfolio</title>
+  <meta name="description" content="Portfolio de Daniel Medina González: graduado en Ciencia e Ingeniería de Datos, estudiante del máster SIANI, streamer y creador de proyectos propios.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #07061a;
-      --surface: rgba(255,255,255,.04);
-      --surface-2: rgba(255,255,255,.07);
-      --border: rgba(255,255,255,.10);
-      --text: #f4f3ff;
-      --muted: #a3a0c4;
-      --purple: #9146ff;
-      --violet: #6d3df0;
-      --cyan: #22d3ee;
-      --grad: linear-gradient(95deg, var(--cyan), var(--purple) 70%);
-      --radius: 22px;
+      --bg: #060d1f;
+      --bg-alt: #081228;
+      --card: #0c1a38;
+      --card-hover: #102249;
+      --border: rgba(120,160,255,.16);
+      --text: #eaf0ff;
+      --muted: #94a3c7;
+      --accent: #2f8cff;
+      --accent-2: #22d3ee;
+      --nav-bg: rgba(6,13,31,.78);
+      --shadow: 0 20px 50px rgba(0,0,0,.45);
+      --radius: 16px;
+    }
+    html[data-theme="light"] {
+      --bg: #f4f7ff;
+      --bg-alt: #eaf0ff;
+      --card: #ffffff;
+      --card-hover: #f8faff;
+      --border: rgba(30,60,140,.14);
+      --text: #0d1530;
+      --muted: #55627f;
+      --accent: #1f6fe0;
+      --accent-2: #0891b2;
+      --nav-bg: rgba(244,247,255,.85);
+      --shadow: 0 20px 50px rgba(30,60,140,.14);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
     body {
       font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.65;
-      overflow-x: hidden;
+      transition: background .3s ease, color .3s ease;
     }
-
-    /* Fondo decorativo */
-    body::before, body::after {
-      content: "";
-      position: fixed;
-      width: 620px; height: 620px;
-      border-radius: 50%;
-      filter: blur(130px);
-      opacity: .35;
-      z-index: -1;
-      pointer-events: none;
-    }
-    body::before { background: var(--purple); top: -200px; left: -180px; }
-    body::after  { background: var(--cyan); bottom: -260px; right: -200px; opacity: .22; }
-
     .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    a { color: inherit; }
 
     /* ---------- Navegación ---------- */
     nav {
       position: sticky; top: 0; z-index: 50;
-      backdrop-filter: blur(16px) saturate(140%);
-      -webkit-backdrop-filter: blur(16px) saturate(140%);
-      background: rgba(7,6,26,.65);
+      background: var(--nav-bg);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
-    .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 68px;
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 600; font-size: .95rem; }
+    .brand .mark {
+      font-weight: 800; font-size: 1.15rem; letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
     }
-    .logo {
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 700; font-size: 1.2rem; letter-spacing: .5px;
-      color: var(--text); text-decoration: none;
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { text-decoration: none; font-size: .88rem; font-weight: 500; color: var(--muted); transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .theme-btn {
+      background: none; border: 1px solid var(--border); color: var(--text);
+      width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1rem;
+      display: grid; place-items: center; transition: border-color .2s, transform .2s;
     }
-    .logo span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .nav-links { display: flex; align-items: center; gap: 30px; }
-    .nav-links a {
-      color: var(--muted); text-decoration: none; font-weight: 500; font-size: .95rem;
-      transition: color .2s;
-    }
-    .nav-links a:hover { color: var(--text); }
+    .theme-btn:hover { border-color: var(--accent); transform: rotate(15deg); }
+
+    /* ---------- Botones ---------- */
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 11px 22px; border-radius: 999px;
-      font-weight: 600; font-size: .95rem; text-decoration: none;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      padding: 12px 24px; border-radius: 10px;
+      font-weight: 600; font-size: .92rem; text-decoration: none; cursor: pointer;
+      border: 1px solid transparent;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
     }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--purple), var(--violet));
-      color: #fff;
-      box-shadow: 0 8px 24px rgba(145,70,255,.4);
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 8px 22px rgba(47,140,255,.35); }
+    .btn-primary:hover { box-shadow: 0 12px 28px rgba(47,140,255,.5); }
+    .btn-outline { border-color: var(--accent); color: var(--accent); background: transparent; }
+    .btn-outline:hover { background: rgba(47,140,255,.1); }
+
+    /* ---------- Banner ---------- */
+    .banner { padding: 28px 0 0; }
+    .banner-frame {
+      border-radius: 20px; padding: 2px;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent), #8b5cf6);
+      box-shadow: var(--shadow);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(145,70,255,.6); }
-    .btn-ghost { border: 1px solid var(--border); color: var(--text); background: var(--surface); }
-    .btn-ghost:hover { transform: translateY(-2px); background: var(--surface-2); border-color: rgba(255,255,255,.25); }
+    .banner-frame img { display: block; width: 100%; height: auto; border-radius: 18px; background: #000; }
 
     /* ---------- Hero ---------- */
-    .hero { padding: 40px 0 10px; }
-    .hero-frame {
-      position: relative;
-      border-radius: 28px;
-      padding: 3px;
-      background: linear-gradient(135deg, var(--cyan), var(--purple), var(--violet));
-      box-shadow: 0 30px 80px rgba(145,70,255,.35);
-    }
-    .hero-frame img {
-      display: block; width: 100%; height: auto;
-      border-radius: 26px;
-      background: #000;
-    }
-
-    /* ---------- Secciones ---------- */
-    section { padding: 90px 0 0; }
+    .hero { padding: 70px 0 80px; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 50px; align-items: center; }
     .eyebrow {
-      display: inline-block;
-      font-size: .8rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 14px;
+      font-size: .72rem; font-weight: 700; letter-spacing: 2.4px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 18px;
     }
-    h2.title {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: clamp(2rem, 4.5vw, 3rem);
-      line-height: 1.12;
-      margin-bottom: 18px;
+    h1 { font-size: clamp(2.3rem, 5vw, 3.5rem); line-height: 1.1; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 22px; }
+    h1 .hl { color: var(--accent); }
+    .hero p { color: var(--muted); font-size: 1.08rem; max-width: 520px; margin-bottom: 30px; }
+    .hero p strong { color: var(--text); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 28px; }
+    .quick-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .quick-links a {
+      font-size: .82rem; font-weight: 600; text-decoration: none; color: var(--muted);
+      padding: 7px 14px; border: 1px solid var(--border); border-radius: 999px;
+      transition: color .2s, border-color .2s, transform .2s;
     }
-    .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .quick-links a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
 
-    /* ---------- Sobre mí ---------- */
-    .about-grid {
-      display: grid; grid-template-columns: 1.25fr 1fr; gap: 40px; align-items: center;
-    }
-    .about-text p { font-size: 1.15rem; color: #d7d5ee; margin-bottom: 16px; }
-    .about-text p strong { color: var(--text); }
-    .about-text .hl {
-      color: var(--cyan); font-weight: 700;
-    }
-    .about-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
-
-    .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .fact {
-      background: var(--surface);
+    /* Panel visual del hero */
+    .visual { position: relative; padding: 30px 10px; }
+    .panel {
+      background: linear-gradient(160deg, var(--card), var(--bg-alt));
       border: 1px solid var(--border);
       border-radius: 18px;
-      padding: 22px 20px;
-      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+      box-shadow: var(--shadow), 0 0 80px rgba(47,140,255,.18);
+      padding: 18px;
     }
-    .fact:hover { transform: translateY(-5px); border-color: var(--purple); background: var(--surface-2); }
-    .fact .num {
-      font-family: "Space Grotesk", sans-serif;
-      font-size: 2rem; font-weight: 700; line-height: 1.1;
-      background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+    .panel-bar { display: flex; gap: 6px; margin-bottom: 14px; }
+    .panel-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--border); display: block; }
+    .panel-bar i:nth-child(1) { background: #ff5f57; }
+    .panel-bar i:nth-child(2) { background: #febc2e; }
+    .panel-bar i:nth-child(3) { background: #28c840; }
+    .panel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .code {
+      grid-row: span 2;
+      font-family: "Consolas", "Courier New", monospace; font-size: .72rem; line-height: 1.7;
+      background: rgba(0,0,0,.25); border-radius: 10px; padding: 14px; color: var(--muted);
+      overflow: hidden;
     }
-    .fact .lbl { color: var(--muted); font-size: .9rem; margin-top: 6px; }
+    html[data-theme="light"] .code { background: rgba(30,60,140,.06); }
+    .code .k { color: #c084fc; } .code .f { color: var(--accent-2); } .code .s { color: #86efac; }
+    .chart { background: rgba(0,0,0,.2); border-radius: 10px; padding: 10px; }
+    html[data-theme="light"] .chart { background: rgba(30,60,140,.05); }
+    .chart svg { width: 100%; height: 70px; display: block; }
+    .float {
+      position: absolute;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--card); border: 1px solid var(--border);
+      padding: 8px 14px; border-radius: 12px; font-size: .78rem; font-weight: 600;
+      box-shadow: var(--shadow);
+      animation: bob 5s ease-in-out infinite;
+    }
+    .float .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-2); }
+    .f1 { top: 0; left: 0; }
+    .f2 { top: 6px; right: 0; animation-delay: -1.5s; }
+    .f3 { bottom: 8px; left: 10px; animation-delay: -3s; }
+    .f4 { bottom: 0; right: 4px; animation-delay: -2s; }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
-    /* ---------- Proyectos ---------- */
-    .projects-head { max-width: 640px; margin-bottom: 40px; }
-    .projects-head p { color: var(--muted); font-size: 1.05rem; }
-    .grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 24px;
+    /* ---------- Secciones ---------- */
+    section.block { padding: 80px 0; border-top: 1px solid var(--border); }
+    section.alt { background: var(--bg-alt); }
+    .sec-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 34px; gap: 16px; }
+    h2 { font-size: 1.65rem; font-weight: 700; letter-spacing: -.5px; position: relative; padding-bottom: 12px; }
+    h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 38px; height: 3px; border-radius: 3px; background: var(--accent); }
+    .see-all { font-size: .85rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+    .see-all:hover { text-decoration: underline; }
+
+    /* Sobre mí */
+    .about { display: grid; grid-template-columns: 1.3fr 1fr; gap: 44px; align-items: center; }
+    .about p { color: var(--muted); font-size: 1.08rem; margin-bottom: 16px; }
+    .about p strong { color: var(--text); }
+    .about p .hl { color: var(--accent); font-weight: 700; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .stat {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px 18px;
+      transition: transform .25s, border-color .25s;
     }
+    .stat:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .stat b { display: block; font-size: 1.7rem; font-weight: 800; color: var(--accent); line-height: 1.15; }
+    .stat span { font-size: .85rem; color: var(--muted); }
+
+    /* Proyectos */
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
     .project {
-      position: relative; overflow: hidden;
-      display: flex; flex-direction: column;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 30px;
-      text-decoration: none; color: inherit;
-      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+      position: relative; display: flex; flex-direction: column;
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px; text-decoration: none;
+      transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
     }
-    .project::before {
-      content: ""; position: absolute; inset: 0;
-      background: radial-gradient(500px circle at var(--mx, 50%) var(--my, 0%), rgba(145,70,255,.22), transparent 45%);
-      opacity: 0; transition: opacity .3s ease; pointer-events: none;
-    }
-    .project:hover { transform: translateY(-8px); border-color: rgba(145,70,255,.7); box-shadow: 0 24px 50px rgba(0,0,0,.45); }
-    .project:hover::before { opacity: 1; }
-    .p-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+    .project:hover { transform: translateY(-6px); border-color: var(--accent); background: var(--card-hover); box-shadow: var(--shadow); }
+    .p-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
     .p-icon {
-      width: 54px; height: 54px; border-radius: 16px;
-      display: grid; place-items: center; font-size: 1.7rem;
-      background: linear-gradient(135deg, rgba(145,70,255,.35), rgba(34,211,238,.2));
-      border: 1px solid var(--border);
+      width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; font-size: 1.3rem;
+      background: rgba(47,140,255,.12); border: 1px solid var(--border);
     }
-    .p-num { font-family: "Space Grotesk", sans-serif; font-size: 1.1rem; color: rgba(255,255,255,.25); font-weight: 700; }
-    .project h3 { font-family: "Space Grotesk", sans-serif; font-size: 1.45rem; margin-bottom: 10px; }
-    .project p { color: var(--muted); font-size: .98rem; flex: 1; }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 18px; }
-    .chip {
-      font-size: .75rem; font-weight: 600; padding: 5px 12px; border-radius: 999px;
-      color: var(--cyan); background: rgba(34,211,238,.08); border: 1px solid rgba(34,211,238,.25);
+    .project h3 { font-size: 1.08rem; font-weight: 700; }
+    .project p { color: var(--muted); font-size: .9rem; flex: 1; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 18px 0 14px; }
+    .tag {
+      font-size: .7rem; font-weight: 600; padding: 4px 11px; border-radius: 999px;
+      border: 1px solid var(--border); color: var(--muted); background: rgba(47,140,255,.06);
     }
-    .p-link { font-weight: 600; font-size: .95rem; color: var(--text); display: inline-flex; gap: 8px; align-items: center; }
-    .p-link .arrow { transition: transform .25s ease; color: var(--purple); }
-    .project:hover .arrow { transform: translateX(6px); }
+    .p-link { font-size: .85rem; font-weight: 600; color: var(--accent); }
+    .p-link span { display: inline-block; transition: transform .2s; }
+    .project:hover .p-link span { transform: translateX(5px); }
 
-    /* ---------- Contacto ---------- */
+    /* Habilidades */
+    .skills { display: flex; flex-wrap: wrap; gap: 12px; }
+    .skill {
+      padding: 10px 20px; border-radius: 999px; font-size: .9rem; font-weight: 600;
+      background: var(--card); border: 1px solid var(--border);
+      transition: transform .2s, border-color .2s, color .2s;
+    }
+    .skill:hover { transform: translateY(-3px); border-color: var(--accent); color: var(--accent); }
+    .skill-group { margin-bottom: 26px; }
+    .skill-group h4 { font-size: .75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; font-weight: 700; }
+
+    /* Contacto */
     .contact {
-      text-align: center;
-      background:
-        radial-gradient(ellipse at top, rgba(145,70,255,.25), transparent 65%),
-        var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      padding: 64px 28px;
+      text-align: center; background: var(--card); border: 1px solid var(--border);
+      border-radius: 24px; padding: 56px 24px;
+      background-image: radial-gradient(ellipse at top, rgba(47,140,255,.16), transparent 65%);
     }
-    .contact p { color: var(--muted); max-width: 520px; margin: 0 auto 34px; font-size: 1.05rem; }
-    .socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
-    .socials .btn { padding: 14px 28px; font-size: 1rem; }
+    .contact p { color: var(--muted); max-width: 500px; margin: 0 auto 30px; }
+    .socials { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 
-    footer {
-      margin-top: 90px; padding: 30px 0 40px;
-      border-top: 1px solid var(--border);
-      text-align: center; color: var(--muted); font-size: .9rem;
-    }
-    footer b { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    footer { border-top: 1px solid var(--border); padding: 28px 0; text-align: center; color: var(--muted); font-size: .85rem; }
+    footer b { color: var(--accent); }
 
-    /* ---------- Animación de entrada ---------- */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+    /* Animaciones */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; transition: none; }
+      .float { animation: none; }
       html { scroll-behavior: auto; }
     }
 
-    /* ---------- Responsive ---------- */
-    @media (max-width: 860px) {
-      .about-grid { grid-template-columns: 1fr; }
-      .nav-links a:not(.btn) { display: none; }
-      section { padding-top: 70px; }
+    /* Responsive */
+    @media (max-width: 880px) {
+      .hero-grid, .about { grid-template-columns: 1fr; }
+      .visual { order: -1; max-width: 480px; margin: 0 auto; width: 100%; }
+      .nav-links a.link { display: none; }
+      .brand span.name { display: none; }
+      .hero { padding: 50px 0 60px; }
+      section.block { padding: 60px 0; }
     }
     @media (max-width: 480px) {
       .container { padding: 0 18px; }
-      .contact { padding: 48px 20px; }
-      .hero-frame { border-radius: 20px; }
-      .hero-frame img { border-radius: 18px; }
+      .float { display: none; }
+      .visual { padding: 0; }
+      .contact { padding: 44px 18px; }
     }
   </style>
 </head>
@@ -236,114 +258,194 @@
 
   <nav>
     <div class="container nav-inner">
-      <a href="#inicio" class="logo">Daniiel<span>MG01</span></a>
+      <a href="#inicio" class="brand"><span class="mark">DM</span><span class="name">Daniel Medina González</span></a>
       <div class="nav-links">
-        <a href="#sobre-mi">Sobre mí</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#contacto">Contacto</a>
-        <a class="btn btn-primary" href="https://www.twitch.tv/daniielmg01" target="_blank" rel="noopener">Ver stream</a>
+        <a class="link active" href="#inicio">Inicio</a>
+        <a class="link" href="#sobre-mi">Sobre mí</a>
+        <a class="link" href="#proyectos">Proyectos</a>
+        <a class="link" href="#habilidades">Habilidades</a>
+        <a class="link" href="#contacto">Contacto</a>
+        <button class="theme-btn" id="themeBtn" aria-label="Cambiar tema claro/oscuro">🌙</button>
       </div>
     </div>
   </nav>
 
   <!-- Imagen inicial -->
-  <header class="hero" id="inicio">
+  <div class="banner" id="inicio">
     <div class="container">
-      <div class="hero-frame">
-        <img src="banner.png" alt="DaniielMG01 · Play, Chill, Enjoy">
+      <div class="banner-frame">
+        <img src="banner.jpg" alt="DaniielMG01 · Play, Chill, Enjoy">
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <div class="eyebrow">Ciencia de datos · Ingeniería de datos · Streamer</div>
+        <h1>¡Hola! Soy <span class="hl">Daniel Medina González</span> 👋</h1>
+        <p>
+          Graduado en <strong>Ciencia e Ingeniería de Datos</strong> y ahora a tope con el
+          <strong>máster SIANI</strong>. Me encanta hacer <strong>streams</strong> de vez en cuando
+          y diseñar <strong>proyectos por mi cuenta</strong>. 🚀
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#proyectos">📁 Ver proyectos</a>
+          <a class="btn btn-outline" href="cv.pdf" download>⬇ Descargar CV</a>
+        </div>
+        <div class="quick-links">
+          <a href="https://github.com/DaniielMG" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.twitch.tv/daniielmg01" target="_blank" rel="noopener">Twitch</a>
+          <a href="https://www.tiktok.com/@daniielmg01" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://www.instagram.com/daniielmg01" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+
+      <div class="visual reveal" aria-hidden="true">
+        <div class="float f1"><span class="dot"></span>Python</div>
+        <div class="float f2"><span class="dot"></span>Machine Learning</div>
+        <div class="float f3"><span class="dot"></span>Pandas</div>
+        <div class="float f4"><span class="dot"></span>Data Engineering</div>
+        <div class="panel">
+          <div class="panel-bar"><i></i><i></i><i></i></div>
+          <div class="panel-grid">
+            <div class="code">
+              <span class="k">import</span> pandas <span class="k">as</span> pd<br>
+              <span class="k">from</span> sklearn <span class="k">import</span> ensemble<br><br>
+              df = pd.<span class="f">read_csv</span>(<span class="s">"data.csv"</span>)<br>
+              model = ensemble.<span class="f">RandomForest</span>()<br>
+              model.<span class="f">fit</span>(X, y)<br>
+              pred = model.<span class="f">predict</span>(X_new)<br><br>
+              <span class="k">print</span>(<span class="s">"¡Listo! 🚀"</span>)
+            </div>
+            <div class="chart">
+              <svg viewBox="0 0 160 70" preserveAspectRatio="none">
+                <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#2f8cff" stop-opacity=".45"/><stop offset="1" stop-color="#2f8cff" stop-opacity="0"/>
+                </linearGradient></defs>
+                <path d="M0 58 L20 50 L40 54 L60 36 L80 40 L100 22 L120 28 L140 10 L160 14 L160 70 L0 70Z" fill="url(#g)"/>
+                <path d="M0 58 L20 50 L40 54 L60 36 L80 40 L100 22 L120 28 L140 10 L160 14" fill="none" stroke="#22d3ee" stroke-width="2.2" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="chart">
+              <svg viewBox="0 0 160 70" preserveAspectRatio="none">
+                <rect x="6" y="42" width="16" height="28" rx="3" fill="#2f8cff" opacity=".5"/>
+                <rect x="30" y="30" width="16" height="40" rx="3" fill="#2f8cff" opacity=".65"/>
+                <rect x="54" y="38" width="16" height="32" rx="3" fill="#2f8cff" opacity=".6"/>
+                <rect x="78" y="18" width="16" height="52" rx="3" fill="#2f8cff" opacity=".8"/>
+                <rect x="102" y="26" width="16" height="44" rx="3" fill="#22d3ee" opacity=".8"/>
+                <rect x="126" y="8" width="16" height="62" rx="3" fill="#22d3ee"/>
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
   <main>
     <!-- Sobre mí -->
-    <section id="sobre-mi">
-      <div class="container about-grid">
-        <div class="about-text reveal">
-          <span class="eyebrow">Sobre mí</span>
-          <h2 class="title">¡Hola! Soy <span class="grad-text">Daniel</span> 👋</h2>
+    <section class="block alt" id="sobre-mi">
+      <div class="container about">
+        <div class="reveal">
+          <div class="sec-head"><h2>Sobre mí</h2></div>
           <p>
-            <strong>Daniel Medina González</strong>, graduado en
-            <span class="hl">Ciencia e Ingeniería de Datos</span> y ahora a tope con el
+            Soy <strong>Daniel Medina González</strong>, graduado en
+            <span class="hl">Ciencia e Ingeniería de Datos</span> y actualmente estudiante del
             <span class="hl">máster SIANI</span>.
           </p>
           <p>
-            Tengo 25 años, me encanta <strong>hacer streams de vez en cuando</strong> y no
-            puedo parar de <strong>diseñar proyectos por mi cuenta</strong>. Si hay una idea
-            rondando, acabo convirtiéndola en algo que funciona. 🚀
+            Tengo 25 años, me encanta <strong>hacer streams de vez en cuando</strong> y no puedo parar de
+            <strong>diseñar proyectos por mi cuenta</strong>: si hay una idea rondando, acabo convirtiéndola
+            en algo que funciona. ⚡
           </p>
-          <div class="about-cta">
-            <a class="btn btn-primary" href="#proyectos">Ver mis proyectos</a>
-            <a class="btn btn-ghost" href="#contacto">Hablemos</a>
-          </div>
         </div>
-
-        <div class="facts reveal">
-          <div class="fact"><div class="num">25</div><div class="lbl">años de energía</div></div>
-          <div class="fact"><div class="num">Datos</div><div class="lbl">Ciencia e Ingeniería</div></div>
-          <div class="fact"><div class="num">SIANI</div><div class="lbl">Máster en curso</div></div>
-          <div class="fact"><div class="num">Live</div><div class="lbl">Streams en Twitch</div></div>
+        <div class="stats reveal">
+          <div class="stat"><b>25</b><span>años de energía</span></div>
+          <div class="stat"><b>Datos</b><span>Ciencia e Ingeniería</span></div>
+          <div class="stat"><b>SIANI</b><span>Máster en curso</span></div>
+          <div class="stat"><b>Live</b><span>Streams en Twitch</span></div>
         </div>
       </div>
     </section>
 
     <!-- Proyectos -->
-    <section id="proyectos">
+    <section class="block" id="proyectos">
       <div class="container">
-        <div class="projects-head reveal">
-          <span class="eyebrow">Proyectos</span>
-          <h2 class="title">Cosas que he <span class="grad-text">construido</span></h2>
-          <p>Bots, análisis de datos y juegos: ideas propias llevadas a la práctica.</p>
+        <div class="sec-head reveal">
+          <h2>Proyectos destacados</h2>
+          <a class="see-all" href="https://github.com/DaniielMG?tab=repositories" target="_blank" rel="noopener">Ver todos →</a>
         </div>
-
-        <div class="grid">
-          <a class="project reveal" href="https://github.com/DaniielMG/MiGymBroBot" target="_blank" rel="noopener">
-            <div class="p-top"><div class="p-icon">🦾</div><div class="p-num">01</div></div>
-            <h3>MiGymBroBot</h3>
-            <p>Bot de Telegram que actúa como tu entrenador personal: genera rutinas según tu peso y objetivo, entiende la jerga de gimnasio y explica la técnica de más de 70 ejercicios.</p>
-            <div class="chips"><span class="chip">Node.js</span><span class="chip">Telegram API</span></div>
-            <span class="p-link">Ver en GitHub <span class="arrow">→</span></span>
-          </a>
-
+        <div class="projects">
           <a class="project reveal" href="https://github.com/DaniielMG/CryptoTracker" target="_blank" rel="noopener">
-            <div class="p-top"><div class="p-icon">📈</div><div class="p-num">02</div></div>
-            <h3>CryptoTracker</h3>
+            <div class="p-head"><div class="p-icon">📈</div><h3>CryptoTracker</h3></div>
             <p>Monitor de criptomonedas en tiempo real con pipeline ETL sobre la API de Binance y un modelo Random Forest que predice precios a 24h, 48h y 72h.</p>
-            <div class="chips"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">Scikit-learn</span></div>
-            <span class="p-link">Ver en GitHub <span class="arrow">→</span></span>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Scikit-learn</span></div>
+            <div class="p-link">Ver en GitHub <span>→</span></div>
           </a>
-
+          <a class="project reveal" href="https://github.com/DaniielMG/MiGymBroBot" target="_blank" rel="noopener">
+            <div class="p-head"><div class="p-icon">🦾</div><h3>MiGymBroBot</h3></div>
+            <p>Bot de Telegram que actúa como entrenador personal: genera rutinas según tu peso y objetivo y explica la técnica de más de 70 ejercicios.</p>
+            <div class="tags"><span class="tag">Node.js</span><span class="tag">Telegram API</span></div>
+            <div class="p-link">Ver en GitHub <span>→</span></div>
+          </a>
           <a class="project reveal" href="https://github.com/DaniielMG/Impostor" target="_blank" rel="noopener">
-            <div class="p-top"><div class="p-icon">🕵️</div><div class="p-num">03</div></div>
-            <h3>Impostor</h3>
-            <p>Juego de deducción social para jugar cara a cara con amigos. Disponible como PWA offline y como app de escritorio, con música, efectos y más de 200 palabras.</p>
-            <div class="chips"><span class="chip">JavaScript</span><span class="chip">PWA</span><span class="chip">Electron</span></div>
-            <span class="p-link">Ver en GitHub <span class="arrow">→</span></span>
+            <div class="p-head"><div class="p-icon">🕵️</div><h3>Impostor</h3></div>
+            <p>Juego de deducción social para jugar con amigos, disponible como PWA offline y como app de escritorio, con música, efectos y más de 200 palabras.</p>
+            <div class="tags"><span class="tag">JavaScript</span><span class="tag">PWA</span><span class="tag">Electron</span></div>
+            <div class="p-link">Ver en GitHub <span>→</span></div>
           </a>
-
           <a class="project reveal" href="https://github.com/DaniielMG/YoNunca" target="_blank" rel="noopener">
-            <div class="p-top"><div class="p-icon">🍹</div><div class="p-num">04</div></div>
-            <h3>Yo Nunca</h3>
-            <p>El clásico juego de fiesta convertido en app móvil: diseño glassmorphism, intro en vídeo, sonidos interactivos, modos Normal y Hot +18, y funciona sin conexión.</p>
-            <div class="chips"><span class="chip">JavaScript</span><span class="chip">Capacitor</span><span class="chip">Android</span></div>
-            <span class="p-link">Ver en GitHub <span class="arrow">→</span></span>
+            <div class="p-head"><div class="p-icon">🍹</div><h3>Yo Nunca</h3></div>
+            <p>El clásico juego de fiesta como app móvil: diseño glassmorphism, intro en vídeo, sonidos interactivos, modos Normal y Hot +18 y uso sin conexión.</p>
+            <div class="tags"><span class="tag">JavaScript</span><span class="tag">Capacitor</span><span class="tag">Android</span></div>
+            <div class="p-link">Ver en GitHub <span>→</span></div>
           </a>
         </div>
       </div>
     </section>
 
+    <!-- Habilidades -->
+    <section class="block alt" id="habilidades">
+      <div class="container">
+        <div class="sec-head reveal"><h2>Habilidades</h2></div>
+        <div class="reveal">
+          <div class="skill-group">
+            <h4>Datos y Machine Learning</h4>
+            <div class="skills">
+              <span class="skill">Python</span><span class="skill">Pandas</span><span class="skill">NumPy</span>
+              <span class="skill">Scikit-learn</span><span class="skill">ETL</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4>Desarrollo</h4>
+            <div class="skills">
+              <span class="skill">JavaScript</span><span class="skill">Node.js</span><span class="skill">HTML</span>
+              <span class="skill">CSS</span><span class="skill">Electron</span><span class="skill">Capacitor</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4>Herramientas</h4>
+            <div class="skills">
+              <span class="skill">Git</span><span class="skill">GitHub</span><span class="skill">VS Code</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Contacto -->
-    <section id="contacto">
+    <section class="block" id="contacto">
       <div class="container">
         <div class="contact reveal">
-          <span class="eyebrow">Contacto</span>
-          <h2 class="title">Encuéntrame en <span class="grad-text">redes</span></h2>
-          <p>Pásate por el stream, sígueme y dime qué opinas de mis proyectos.</p>
+          <div class="sec-head" style="justify-content:center"><h2 style="padding-bottom:0"><span style="display:none"></span>Contacto</h2></div>
+          <p>¿Hablamos? Pásate por el stream, sígueme en redes o échale un ojo a mi código.</p>
           <div class="socials">
-            <a class="btn btn-primary" href="https://www.twitch.tv/daniielmg01" target="_blank" rel="noopener">Twitch</a>
-            <a class="btn btn-ghost" href="https://www.tiktok.com/@daniielmg01" target="_blank" rel="noopener">TikTok</a>
-            <a class="btn btn-ghost" href="https://www.instagram.com/daniielmg01" target="_blank" rel="noopener">Instagram</a>
-            <a class="btn btn-ghost" href="https://github.com/DaniielMG" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-primary" href="https://github.com/DaniielMG" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-outline" href="https://www.twitch.tv/daniielmg01" target="_blank" rel="noopener">Twitch</a>
+            <a class="btn btn-outline" href="https://www.tiktok.com/@daniielmg01" target="_blank" rel="noopener">TikTok</a>
+            <a class="btn btn-outline" href="https://www.instagram.com/daniielmg01" target="_blank" rel="noopener">Instagram</a>
           </div>
         </div>
       </div>
@@ -357,22 +459,35 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Animación de entrada al hacer scroll
+    // Tema claro / oscuro
+    const root = document.documentElement;
+    const btn = document.getElementById("themeBtn");
+    let saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    if (saved) root.setAttribute("data-theme", saved);
+    const paint = () => { btn.textContent = root.getAttribute("data-theme") === "dark" ? "🌙" : "☀️"; };
+    paint();
+    btn.addEventListener("click", () => {
+      const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+      paint();
+    });
+
+    // Animación de entrada
     const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); }
-      });
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); } });
     }, { threshold: 0.12 });
     document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
-    // Brillo que sigue al cursor en las tarjetas de proyecto
-    document.querySelectorAll(".project").forEach((card) => {
-      card.addEventListener("mousemove", (ev) => {
-        const r = card.getBoundingClientRect();
-        card.style.setProperty("--mx", (ev.clientX - r.left) + "px");
-        card.style.setProperty("--my", (ev.clientY - r.top) + "px");
-      });
-    });
+    // Enlace activo en el menú según la sección visible
+    const links = document.querySelectorAll(".nav-links a.link");
+    const sections = [...links].map((a) => document.querySelector(a.getAttribute("href")));
+    window.addEventListener("scroll", () => {
+      let idx = 0;
+      sections.forEach((s, i) => { if (s && s.getBoundingClientRect().top < 140) idx = i; });
+      links.forEach((a, i) => a.classList.toggle("active", i === idx));
+    }, { passive: true });
   </script>
 </body>
 </html>
