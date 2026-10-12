@@ -87,15 +87,6 @@
     .btn-outline { border-color: var(--accent); color: var(--accent); background: transparent; }
     .btn-outline:hover { background: rgba(47,140,255,.1); }
 
-    /* ---------- Banner ---------- */
-    .banner { padding: 28px 0 0; }
-    .banner-frame {
-      border-radius: 20px; padding: 2px;
-      background: linear-gradient(135deg, var(--accent-2), var(--accent), #8b5cf6);
-      box-shadow: var(--shadow);
-    }
-    .banner-frame img { display: block; width: 100%; height: auto; border-radius: 18px; background: #000; }
-
     /* ---------- Hero ---------- */
     .hero { padding: 70px 0 80px; }
     .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 50px; align-items: center; }
@@ -270,17 +261,8 @@
     </div>
   </nav>
 
-  <!-- Imagen inicial -->
-  <div class="banner" id="inicio">
-    <div class="container">
-      <div class="banner-frame">
-        <img src="banner.jpg" alt="DaniielMG01 · Play, Chill, Enjoy">
-      </div>
-    </div>
-  </div>
-
   <!-- Hero -->
-  <header class="hero">
+  <header class="hero" id="inicio">
     <div class="container hero-grid">
       <div class="reveal">
         <div class="eyebrow">Ciencia de datos · Ingeniería de datos · Streamer</div>
@@ -292,7 +274,7 @@
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#proyectos">📁 Ver proyectos</a>
-          <a class="btn btn-outline" href="cv.pdf" download>⬇ Descargar CV</a>
+          <a class="btn btn-outline" href="cv.pdf" target="_blank" rel="noopener" download="CV-Daniel-Medina-Gonzalez.pdf">⬇ Descargar CV</a>
         </div>
         <div class="quick-links">
           <a href="https://github.com/DaniielMG" target="_blank" rel="noopener">GitHub</a>
